@@ -1,0 +1,32 @@
+{
+  "name": "demo-microsoft-fluentui",
+  "version": "1.0.0",
+  "description": "Demo Web Components based on FluentUI",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf wwwroot/dist && webpack --config webpack.config.js --mode=production && rimraf wwwroot/dist",
+    "dev": "webpack-dev-server",
+    "serve": "http-server -c-1"
+  },
+  "author": "Valks",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@microsoft/fast-colors": "latest",
+    "@microsoft/fast-components": "latest",
+    "@microsoft/fast-element": "latest",
+    "@microsoft/fast-foundation": "latest",
+    "lodash-es": "latest",
+    "tslib": "latest"
+  },
+  "devDependencies": {
+    "http-server": "latest",
+    "rimraf": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-dev-server": "latest"
+  }
+, "-vs-binding":{"BeforeBuild":["build"]}
+}
