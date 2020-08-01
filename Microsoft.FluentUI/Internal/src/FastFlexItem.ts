@@ -12,12 +12,6 @@ const template = html<FASTFlexItem>`
     </template>
 `;
 
-customElement({
-    name: 'fast-flex-item',
-    template,
-    styles
-})
-
 export enum FlexItemAlignMode {
     auto    = 'auto',
     start   = 'start',
@@ -40,6 +34,11 @@ export enum FlexDirection {
     column = 'column'
 }
 
+@customElement({
+    name: 'fast-flex-item',
+    template,
+    styles
+})
 export class FASTFlexItem extends FASTElement {
     /**
      *  Controls item's alignment.

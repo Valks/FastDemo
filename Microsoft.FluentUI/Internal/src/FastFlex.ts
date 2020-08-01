@@ -12,12 +12,6 @@ const template = html<FASTFlex>`
     </template>
 `;
 
-customElement({
-    name: 'fast-flex',
-    template,
-    styles
-})
-
 export enum FlexAlignMode {
     start   = 'start',
     center  = 'center',
@@ -42,6 +36,11 @@ export enum PaddingMode {
     medium = 'padding.medium'
 }
 
+@customElement({
+    name: 'fast-flex',
+    template,
+    styles
+})
 export class FASTFlex extends FASTElement {
     /**
      *  Defines if container should be inline element.
