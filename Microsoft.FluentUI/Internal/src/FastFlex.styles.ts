@@ -6,14 +6,14 @@ export const FlexStyles = css`
     :host {
         display: 'flex';
     }
-    :host(.debug) {
+    :host([debug]) {
         border: '1px dotted grey';
         background: 'lightgrey';
     }
-    :host(.inline) {
+    :host([inline]) {
         display: 'inline-flex';
     }
-    :host(.column) {
+    :host([column]) {
         flex-direction: 'column';
     }
 `;
