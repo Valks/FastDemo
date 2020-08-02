@@ -2,12 +2,7 @@
 import { FlexStyles as styles } from "./FastFlex.styles"
 
 const template = html<FASTFlex>`
-    <template style="${x => x.column && x.hAlign ? `align-items: flex-${x.hAlign};` : `justify-content: flex-${x.hAlign};`}
-                     ${x => x.column && x.vAlign ? `justify-content: flex-${x.vAlign};` : `align-items: flex-${x.vAlign};`}
-                     ${x => x.space ? `justify-content: space-${x.space};` : void 0}
-                     ${x => x.wrap ? `flex-wrap: wrap;` : void 0}
-                     ${x => x.fill ? `width: 100%; height: 100%;` : void 0}
-    ">
+    <template style="${x => x.padding === PaddingMode.medium ? `padding: 10px;` : ``}">
         <slot></slot>
     </template>
 `;
@@ -49,7 +44,7 @@ export class FASTFlex extends FASTElement {
      *  HTML Attribute: inline
      */
     @attr({ attribute: "inline", mode: "boolean" })
-    public inline: boolean = false;
+    public inline?: boolean;
 
     /**
      *  Sets vertical flow direction.
@@ -58,7 +53,7 @@ export class FASTFlex extends FASTElement {
      *  HTML Attribute: column
      */
     @attr({ attribute: "column", mode: "boolean" })
-    public column: boolean = false;
+    public column?: boolean;
 
     /**
      *  Allows overflow items to wrap on the next container's line.
@@ -67,7 +62,7 @@ export class FASTFlex extends FASTElement {
      *  HTML Attribute: wrap
      */
     @attr({ attribute: "wrap", mode: "boolean" })
-    public wrap: boolean = false;
+    public wrap?: boolean;
 
     /**
      *  Controls items alignment in horizontal direction.
@@ -75,8 +70,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: hAlign
      */
-    @attr({ attribute: "hAlign" })
-    public hAlign: FlexAlignMode = FlexAlignMode.start;
+    @attr({ attribute: "hAlign", mode: "fromView" })
+    public hAlign?: FlexAlignMode;
 
     /**
      *  Controls items alignment in vertical direction.
@@ -84,8 +79,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: vAlign
      */
-    @attr({ attribute: "vAlign" })
-    public vAlign: FlexAlignMode = FlexAlignMode.start;
+    @attr({ attribute: "vAlign", mode: "fromView" })
+    public vAlign?: FlexAlignMode;
 
     /**
      *  Defines strategy for distributing remaining space between items.
@@ -93,8 +88,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: space
      */
-    @attr({ attribute: "space" })
-    public space: FlexSpaceMode = FlexSpaceMode.around;
+    @attr({ attribute: "space", mode: "fromView" })
+    public space?: FlexSpaceMode;
 
     /**
      *  Defines gap between each two adjacent child items.
@@ -102,8 +97,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: gap
      */
-    @attr({ attribute: "gap" })
-    public gap: GapMode = GapMode.small;
+    @attr({ attribute: "gap", mode: "fromView" })
+    public gap?: GapMode;
 
     /**
      *  Defines container's padding.
@@ -111,8 +106,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: padding
      */
-    @attr({ attribute: "padding" })
-    public padding: PaddingMode = PaddingMode.medium;
+    @attr({ attribute: "padding", mode: "fromView" })
+    public padding?: PaddingMode;
 
     /**
      *  Enables debug mode.
@@ -120,8 +115,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: debug
      */
-    @attr({ attribute: "debug" })
-    public debug: boolean = false;
+    @attr({ attribute: "debug", mode: "boolean" })
+    public debug?: boolean;
 
     /**
      *  Orders container to fill all parent's space available.
@@ -129,8 +124,8 @@ export class FASTFlex extends FASTElement {
      *  @remarks
      *  HTML Attribute: fill
      */
-    @attr({ attribute: "fill" })
-    public fill: boolean = false;
+    @attr({ attribute: "fill", mode: "boolean" })
+    public fill?: boolean;
 }
 
 export const FlexStyles = styles;

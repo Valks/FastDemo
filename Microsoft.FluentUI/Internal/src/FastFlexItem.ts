@@ -2,31 +2,26 @@
 import { FlexItemStyles as styles } from "./FastFlexItem.styles"
 
 const template = html<FASTFlexItem>`
-    <template style="${x => x.align ? `align-self: flex-${x.align};` : void 0}
-                     ${x => x.size ? `flex-basis: ${x.size};` : void 0}
-                     ${x => x.shrink ? `flex-shrink: ${x.shrink};` : void 0}
-                     ${x => x.grow ? `flex-grow: ${x.grow};` : void 0}
-                     ${x => x.push && (x.flexDirection === FlexDirection.column ? `margin-top: 'auto';` : `margin-left: 'auto';`)}
-    ">
+    <template style="${x => x.size ? `flex-basis: ${x.size};` : ``}">
         <slot></slot>
     </template>
 `;
 
 export enum FlexItemAlignMode {
-    auto    = 'auto',
-    start   = 'start',
-    end = 'end',
-    center = 'center',
+    auto     = 'auto',
+    start    = 'start',
+    end      = 'end',
+    center   = 'center',
     baseline = 'baseline',
-    stretch = 'stretch'
+    stretch  = 'stretch'
 }
 
 export enum FlexItemSizeMode {
-    half = 'size.half',
+    half    = 'size.half',
     quarter = 'size.quarter',
-    small = 'size.small',
-    medium = 'size.medium',
-    large = 'size.large'
+    small   = 'size.small',
+    medium  = 'size.medium',
+    large   = 'size.large'
 }
 
 export enum FlexDirection {
@@ -46,8 +41,8 @@ export class FASTFlexItem extends FASTElement {
      *  @remarks
      *  HTML Attribute: align
      */
-    @attr({ attribute: "align" })
-    public align: FlexItemAlignMode = FlexItemAlignMode.auto;
+    @attr({ attribute: "align", mode: "fromView" })
+    public align?: FlexItemAlignMode;
 
     /**
      *  Defines size of the item.
@@ -55,8 +50,8 @@ export class FASTFlexItem extends FASTElement {
      *  @remarks
      *  HTML Attribute: size
      */
-    @attr({ attribute: "align" })
-    public size: FlexItemSizeMode = FlexItemSizeMode.quarter;
+    @attr({ attribute: "size", mode: "fromView" })
+    public size?: FlexItemSizeMode;
 
     /**
      *  Item can fill remaining space of the container.
@@ -66,7 +61,7 @@ export class FASTFlexItem extends FASTElement {
      *  HTML Attribute: grow
      */
     @attr({ attribute: "grow", mode: "fromView" })
-    public grow: boolean | number = false;
+    public grow?: boolean | number;
 
     /**
      *  Controls item's ability to shrink.
@@ -75,7 +70,7 @@ export class FASTFlexItem extends FASTElement {
      *  HTML Attribute: shrink
      */
     @attr({ attribute: "shrink", mode: "fromView" })
-    public shrink: boolean | number = false;
+    public shrink?: boolean | number;
 
     /**
      *  Item can be pushed towards opposite side in the container's direction.
@@ -84,7 +79,7 @@ export class FASTFlexItem extends FASTElement {
      *  HTML Attribute: push
      */
     @attr({ attribute: "push", mode: "boolean" })
-    public push: boolean = false;
+    public push?: boolean;
 
     /**
      *  IGNORE (will be refactored and not exposed via API).
@@ -93,8 +88,8 @@ export class FASTFlexItem extends FASTElement {
      *  @remarks
      *  HTML Attribute: flexDirection
      */
-    @attr({ attribute: "flexDirection" })
-    public flexDirection: FlexDirection = FlexDirection.row;
+    @attr({ attribute: "flexDirection", mode: "fromView" })
+    public flexDirection?: FlexDirection;
 }
 
 export const FlexItemStyles = styles;
